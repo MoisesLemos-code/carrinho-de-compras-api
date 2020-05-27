@@ -1,5 +1,6 @@
 package com.moises.CarrinhoApi.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,7 +61,7 @@ public class CarrinhoService {
 	}
 	
 	public Carrinho fromDTO(CarrinhoDTO objDto) {
-		return new Carrinho(objDto.getCodigo(), objDto.getDescricao(),  objDto.getValor(), objDto.getData_abertura(), objDto.getUsuario());
+		return new Carrinho(objDto.getCodigo(), objDto.getDescricao(),  objDto.getValor(), new Date(), objDto.getUsuario());
 	}
 	
 	private void updateData(Carrinho newObj, Carrinho obj) {

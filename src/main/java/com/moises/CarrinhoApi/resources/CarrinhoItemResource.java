@@ -69,7 +69,7 @@ public class CarrinhoItemResource {
 	public ResponseEntity<Page<CarrinhoItem>> findPage(
 			@RequestParam(value="page",defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage",defaultValue="24")Integer linesPerPage, 
-			@RequestParam(value="orderBy",defaultValue="nome")String orderBy, 
+			@RequestParam(value="orderBy",defaultValue="codigo")String orderBy, 
 			@RequestParam(value="direction",defaultValue="ASC")String direction) {
 		Page<CarrinhoItem> list = service.findPage(page, linesPerPage, orderBy, direction);
 		return ResponseEntity.ok().body(list);

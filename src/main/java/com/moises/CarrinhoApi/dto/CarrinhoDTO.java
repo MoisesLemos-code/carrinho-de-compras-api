@@ -1,7 +1,6 @@
 package com.moises.CarrinhoApi.dto;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +9,6 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.moises.CarrinhoApi.domain.Carrinho;
 import com.moises.CarrinhoApi.domain.Usuario;
 
@@ -26,8 +24,6 @@ public class CarrinhoDTO  implements Serializable{
 	private String descricao;
 	private double valor;
 	
-	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
-	private Date data_abertura;
 	
 	private Usuario usuario;
 	
@@ -37,7 +33,6 @@ public class CarrinhoDTO  implements Serializable{
 		codigo = obj.getCodigo();
 		descricao = obj.getDescricao();
 		valor = obj.getValor();
-		data_abertura = obj.getData_abertura();
 		usuario = obj.getUsuario();
 	}
 
@@ -63,14 +58,6 @@ public class CarrinhoDTO  implements Serializable{
 
 	public void setValor(double valor) {
 		this.valor = valor;
-	}
-
-	public Date getData_abertura() {
-		return data_abertura;
-	}
-
-	public void setData_abertura(Date data_abertura) {
-		this.data_abertura = data_abertura;
 	}
 
 	public Usuario getUsuario() {
