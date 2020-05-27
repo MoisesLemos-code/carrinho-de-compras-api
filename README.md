@@ -1,7 +1,6 @@
 # carrinho-de-compras-api
 
-## Back-end em Spring Boot com banco de dados PostgreSQL para uma aplicação de
-[carrinho de compras](https://github.com/MoisesLemos-code/carrinho-de-compras-app).
+## Back-end em Spring Boot com banco de dados PostgreSQL para uma aplicação de [carrinho de compras](https://github.com/MoisesLemos-code/carrinho-de-compras-app).
 
 ### Checklist
 - [x] Usuário
