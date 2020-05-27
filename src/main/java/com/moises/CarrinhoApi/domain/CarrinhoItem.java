@@ -2,42 +2,49 @@ package com.moises.CarrinhoApi.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
+@Entity
 public class CarrinhoItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@JsonIgnore
-	@EmbeddedId
-	private CarrinhoItemPK codigo = new CarrinhoItemPK();
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer codigo;
 	
 	private String titulo;
 	private double valor;
 	private Integer quantidade;
 	
+	@ManyToOne
+	@JoinColumn(name="carrinho_codigo")
+	private Carrinho carrinho;
+	
 	public CarrinhoItem() {}
 
-	public CarrinhoItem(Carrinho carrinho, CarrinhoItem carrinhoItem, String titulo, double valor, Integer quantidade) {
+	public CarrinhoItem(Integer codigo, String titulo, double valor, Integer quantidade, Carrinho carrinho) {
 		super();
-		codigo.setCarrinho(carrinho);
-		codigo.setCarrinhoItem(carrinhoItem);
+		this.codigo = codigo;
 		this.titulo = titulo;
 		this.valor = valor;
 		this.quantidade = quantidade;
+		this.carrinho = carrinho;
 	}
 
 	public double getSubTotal() {
 		return valor * quantidade;
 	}
-	
-	public CarrinhoItemPK getCodigo() {
+
+	public Integer getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(CarrinhoItemPK codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 
@@ -63,6 +70,14 @@ public class CarrinhoItem implements Serializable {
 
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	public Carrinho getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(Carrinho carrinho) {
+		this.carrinho = carrinho;
 	}
 
 	@Override

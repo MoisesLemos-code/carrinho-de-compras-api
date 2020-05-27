@@ -1,9 +1,9 @@
 package com.moises.CarrinhoApi.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 
 @Entity
@@ -30,12 +31,12 @@ public class Carrinho implements Serializable{
 	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private Date data_abertura;
 	
-	@OneToMany(mappedBy="codigo.carrinho")
-	private Set<CarrinhoItem> carrinhoItems = new HashSet<>();
-	
 	@ManyToOne
-	@JoinColumn(name="cliente_codigo")
+	@JoinColumn(name="usuario_codigo")
 	private Usuario usuario;
+	
+	@OneToMany(mappedBy="carrinho")
+	private List<CarrinhoItem> carrinhoItems = new ArrayList<>();
 	
 	public Carrinho() {}
 
@@ -97,11 +98,11 @@ public class Carrinho implements Serializable{
 		this.usuario = usuario;
 	}
 	
-	public Set<CarrinhoItem> getCarrinhoItems() {
+	public List<CarrinhoItem> getCarrinhoItems() {
 		return carrinhoItems;
 	}
 
-	public void setCarrinhoItems(Set<CarrinhoItem> carrinhoItems) {
+	public void setCarrinhoItems(List<CarrinhoItem> carrinhoItems) {
 		this.carrinhoItems = carrinhoItems;
 	}
 
