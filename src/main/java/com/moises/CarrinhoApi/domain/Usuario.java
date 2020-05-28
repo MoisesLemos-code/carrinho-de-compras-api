@@ -22,6 +22,7 @@ public class Usuario implements Serializable{
 	private Integer codigo;
 	private String nome;
 	private String nome_completo;
+	@JsonIgnore
 	private String senha;
 	
 	@JsonIgnore

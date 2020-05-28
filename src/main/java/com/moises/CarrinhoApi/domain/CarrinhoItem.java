@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class CarrinhoItem implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -22,6 +24,7 @@ public class CarrinhoItem implements Serializable {
 	private Integer quantidade;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="carrinho_codigo")
 	private Carrinho carrinho;
 	
