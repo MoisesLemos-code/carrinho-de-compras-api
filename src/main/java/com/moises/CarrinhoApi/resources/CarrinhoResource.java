@@ -2,6 +2,7 @@ package com.moises.CarrinhoApi.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -61,18 +62,20 @@ public class CarrinhoResource {
 	}
 	
 	@RequestMapping(value="/all",method = RequestMethod.GET)
-	public ResponseEntity<List<Carrinho>> findAll() {
+	public ResponseEntity<List<CarrinhoDTO>> findAll() {
 		List<Carrinho> list = service.findAll();
-		return ResponseEntity.ok().body(list);
+		List<CarrinhoDTO> listDto = list.stream().map(obj -> new CarrinhoDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 
 	@RequestMapping(value = "/page", method = RequestMethod.GET)
-	public ResponseEntity<Page<Carrinho>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
+	public ResponseEntity<Page<CarrinhoDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "codigo") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "ASC") String direction) {
 		Page<Carrinho> list = service.findPage(page, linesPerPage, orderBy, direction);
-		return ResponseEntity.ok().body(list);
+		Page<CarrinhoDTO> listDto = list.map(obj -> new CarrinhoDTO(obj));
+		return ResponseEntity.ok().body(listDto);
 	}
 
 }
