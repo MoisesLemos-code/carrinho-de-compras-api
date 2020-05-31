@@ -11,15 +11,21 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
+import com.moises.CarrinhoApi.domain.Carrinho;
 import com.moises.CarrinhoApi.domain.CarrinhoItem;
+import com.moises.CarrinhoApi.dto.CarrinhoItemDTO;
 import com.moises.CarrinhoApi.repositories.CarrinhoItemRepository;
+
 
 @Service
 public class CarrinhoItemService {
-
+	
 	@Autowired
 	private CarrinhoItemRepository repo;
-
+	
+	@Autowired
+	private CarrinhoService carrinhoService;
+	
 	public CarrinhoItem find(Integer id) {
 		Optional<CarrinhoItem> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -43,7 +49,7 @@ public class CarrinhoItemService {
 		repo.deleteById(id);
 		}
 		catch(DataIntegrityViolationException e) {
-			throw new DataIntegrityViolationException("Não foi possível excluir o item, pois o mesmo possui vinculos!");
+			throw new DataIntegrityViolationException("Não é possível excluir este item!");
 		}
 	}
 	
@@ -57,9 +63,15 @@ public class CarrinhoItemService {
 		return repo.findAll(pageRequest);
 	}
 	
+	public CarrinhoItem fromDTO(CarrinhoItemDTO objDto) {
+		Carrinho carrinho = carrinhoService.find(objDto.getCodigo_carrinho());
+		return new CarrinhoItem(objDto.getCodigo(), objDto.getTitulo(),  objDto.getValor(), objDto.getQuantidade(), carrinho);
+	}
+	
 	private void updateData(CarrinhoItem newObj, CarrinhoItem obj) {
 		newObj.setTitulo(obj.getTitulo());
 		newObj.setValor(obj.getValor());
 		newObj.setQuantidade(obj.getQuantidade());
 	}
+
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,7 +36,7 @@ public class Carrinho implements Serializable{
 	@JoinColumn(name="usuario_codigo")
 	private Usuario usuario;
 	
-	@OneToMany(mappedBy="carrinho")
+	@OneToMany(mappedBy="carrinho", cascade = CascadeType.ALL)
 	private List<CarrinhoItem> carrinhoItems = new ArrayList<>();
 	
 	public Carrinho() {}

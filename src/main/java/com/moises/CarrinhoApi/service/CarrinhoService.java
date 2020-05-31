@@ -23,6 +23,9 @@ public class CarrinhoService {
 	@Autowired
 	private CarrinhoRepository repo;
 	
+	@Autowired
+	private UsuarioService usuarioService;
+	
 	public Carrinho find(Integer id) {
 		Optional<Carrinho> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -61,6 +64,8 @@ public class CarrinhoService {
 	}
 	
 	public Carrinho fromDTO(CarrinhoDTO objDto) {
+		usuarioService.find(objDto.getUsuario().getCodigo());
+		
 		return new Carrinho(objDto.getCodigo(), objDto.getDescricao(),  objDto.getValor(), new Date(), objDto.getUsuario());
 	}
 	

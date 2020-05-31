@@ -20,7 +20,7 @@ public class CarrinhoDTO  implements Serializable{
 	private Integer codigo;
 	
 	@NotEmpty(message = "Preenchimento obrigatório!")
-	@Length(min = 2, max = 20, message = "O tamanho deve ser entre 2 e 20 caracteres!")
+	@Length(min = 2, max = 30, message = "O tamanho deve ser entre 2 e 30 caracteres!")
 	private String descricao;
 	private double valor;
 	
