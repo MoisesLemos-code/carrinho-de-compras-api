@@ -10,10 +10,10 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import com.moises.CarrinhoApi.domain.Usuario;
-import com.moises.CarrinhoApi.services.validation.UsuarioUpdate;
+import com.moises.CarrinhoApi.services.validation.UsuarioInsert;
 
-@UsuarioUpdate
-public class UsuarioDTO  implements Serializable{
+@UsuarioInsert
+public class UsuarioNewDTO  implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -31,9 +31,9 @@ public class UsuarioDTO  implements Serializable{
 	@NotEmpty(message = "Preenchimento obrigatório!")
 	private String senha;
 	
-	public UsuarioDTO() {}
+	public UsuarioNewDTO() {}
 	
-	public UsuarioDTO(Usuario obj) {
+	public UsuarioNewDTO(Usuario obj) {
 		codigo = obj.getCodigo();
 		nome   = obj.getNome();
 		nome_completo = obj.getNome_completo();

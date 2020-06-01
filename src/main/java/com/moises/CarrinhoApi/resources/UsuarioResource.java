@@ -19,7 +19,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.moises.CarrinhoApi.domain.Usuario;
 import com.moises.CarrinhoApi.dto.UsuarioDTO;
-import com.moises.CarrinhoApi.service.UsuarioService;
+import com.moises.CarrinhoApi.dto.UsuarioNewDTO;
+import com.moises.CarrinhoApi.services.UsuarioService;
 
 
 @RestController
@@ -37,7 +38,7 @@ public class UsuarioResource {
 	}
 
 	@RequestMapping(value="/insert",method = RequestMethod.POST)
-	public ResponseEntity<Void> insert(@Valid @RequestBody UsuarioDTO objDto) {
+	public ResponseEntity<Void> insert(@Valid @RequestBody UsuarioNewDTO objDto) {
 		Usuario obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		// Fornecer URI após inserir!

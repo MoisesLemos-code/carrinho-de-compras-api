@@ -1,4 +1,4 @@
-package com.moises.CarrinhoApi.service;
+package com.moises.CarrinhoApi.services;
 
 import java.util.List;
 import java.util.Optional;

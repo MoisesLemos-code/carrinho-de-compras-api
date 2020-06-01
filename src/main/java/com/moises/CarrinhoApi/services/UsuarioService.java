@@ -1,4 +1,4 @@
-package com.moises.CarrinhoApi.service;
+package com.moises.CarrinhoApi.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.moises.CarrinhoApi.domain.Usuario;
 import com.moises.CarrinhoApi.dto.UsuarioDTO;
+import com.moises.CarrinhoApi.dto.UsuarioNewDTO;
 import com.moises.CarrinhoApi.repositories.UsuarioRepository;
 
 
@@ -64,6 +65,10 @@ public class UsuarioService {
 	}
 	
 	public Usuario fromDTO(UsuarioDTO objDto) {
+		return new Usuario(objDto.getCodigo(), objDto.getNome(),  objDto.getNome_completo(), pe.encode(objDto.getSenha()));
+	}
+	
+	public Usuario fromDTO(UsuarioNewDTO objDto) {
 		return new Usuario(objDto.getCodigo(), objDto.getNome(),  objDto.getNome_completo(), pe.encode(objDto.getSenha()));
 	}
 	

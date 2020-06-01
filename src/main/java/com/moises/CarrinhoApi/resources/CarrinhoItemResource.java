@@ -19,7 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.moises.CarrinhoApi.domain.CarrinhoItem;
 import com.moises.CarrinhoApi.dto.CarrinhoItemDTO;
-import com.moises.CarrinhoApi.service.CarrinhoItemService;
+import com.moises.CarrinhoApi.services.CarrinhoItemService;
 
 
 @RestController
